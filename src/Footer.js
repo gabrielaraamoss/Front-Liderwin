@@ -126,8 +126,9 @@ const Footer = () => {
 					<div className="row"> */}
           <div className="col-md-12 text-center">
             <span className="payments">
-              <FaCcVisa /> <FaCcPaypal /> <FaCcMastercard /> <FaCcAmex />{" "}
-              <FaCreditCard />
+              <FaCcVisa size="2.3em" /> <FaCreditCard size="2.3em" />{" "}
+              <FaCcPaypal size="2.3em" /> <FaCcMastercard size="2.3em" />{" "}
+              <FaCcAmex size="2.3em" />
             </span>
             <span className="copyright">
               Copyright © 2021 All rights reserved by{" "}

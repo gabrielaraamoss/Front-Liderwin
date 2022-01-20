@@ -16,102 +16,111 @@ import {
 import logo from "./assets/images/logo-liderwin.png";
 
 const Header = () => {
-  const { error, isPending, data } = useFetch('http://localhost:3001/categorias');
+  const { error, isPending, data } = useFetch(
+    "http://localhost:3001/categorias"
+  );
   return (
-    <div className='header' id="container">
-      <div className="options">
-        <ul id="contact">
-          <li>
-            <p><i><FaRegEnvelope /></i>
-              ventas@liderwin.com
-            </p>
-          </li>
-          <li>
-            <p>
-              <i>
-                <FaPhoneAlt />
-              </i>
-              (+593) 950 518400
-            </p>
-          </li>
-          <li>
-            <p>
-              <i>
-                <FaMapMarkerAlt />
-              </i>
-              C.C. Buenavista Plaza B5 Local 5, Samborondón
-            </p>
-          </li>
-        </ul>
-        <ul id="options-personal">
-          <li>
-            <p>
-              <i>
-                <FaDollarSign />
-              </i>
-              USD
-            </p>
-          </li>
-          <li>
-            <p>
-              <i>
-                <FaUser />
-              </i>
-              Cuenta
-            </p>
-          </li>
-        </ul>
+    <div>
+      <div id="top-header">
+        <div class="container">
+          <ul class="header-links pull-left">
+            <li>
+              <a href="#">
+                <i class="fa fa-envelope-o"></i> ventas@liderwin.com
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-phone"></i> (+593) 950 518400
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-map-marker"></i> C.C. Buenavista Plaza B5 Local
+                5, Samborondón
+              </a>
+            </li>
+          </ul>
+          <ul class="header-links pull-right">
+            <li>
+              <a href="#">
+                <i class="fa fa-dollar"></i>USD
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-user-o"></i>Mi Cuenta
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
-      <div className="buscador">
-        <img id="logo" src={logo} />
-        <form>
-          <select className="input-select">
-            {
-              data && data.map((e) => (
-                <option key={e.idCategoria} value={e.idCategoria}>{e.nombre}</option>
-              ))
-            }
-          </select>
-          <input className="input" placeholder="Buscar aquí"></input>
-          <button className="search-btn">Buscar</button>
-        </form>
-        <div id="options-buy">
-          <div id="container-options-buy">
-            <i className="p">
-              <FaHeart />
-            </i>
-            <a data-toggle="dropdown" aria-expanded="true">
-              <span className="p">Mis Favoritos</span>
-            </a>
-            <i className="p">
-              <FaShoppingCart />
-            </i>
-            <a data-toggle="dropdown" aria-expanded="true">
-              <span className="p">Mi Carrito</span>
-            </a>
+
+      <div id="header">
+        <div class="container">
+          <div class="row">
+            <span>
+              <div class="col-md-3">
+                <div class="header-logo">
+                  <a href="index.html" class="logo">
+                    <img src={logo} alt="" />
+                  </a>
+                </div>
+              </div>
+            </span>
+
+            <span>
+              <div class="col-md-6">
+                <div class="header-search">
+                  <form>
+                    <select class="input-select">
+                      <option value="0">Categorías</option>
+                    </select>
+                    <input class="input" placeholder="Buscar aquí" />
+                    <button class="search-btn" type="button">
+                      Buscar
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </span>
           </div>
         </div>
       </div>
-      <div>
-        <ul className="navegador">
-          <li className="active">
-            <Link to='/'>Inicio</Link>
-          </li>
-          <li>
-            <Link to='/catalogo'>Catálogo</Link>
-          </li>
-          <li>
-            <Link to='/servicios'>Servicios</Link>
-          </li>
-        
-          <li>
-            <Link to='/contactos'>Contacto</Link>
-          </li>
-          <li>
-            <Link to='/equipo'>Equipo</Link>
-          </li>
-        </ul>
-      </div>
+
+      <nav id="navigation">
+        <div class="container">
+          <div id="responsive-nav">
+            <ul class="main-nav nav navbar-nav">
+              <li class="active">
+                <a>
+                  <Link to="/">Inicio</Link>
+                </a>
+              </li>
+              <li>
+                <a>
+                  <Link to="/catalogo">Catálogo</Link>
+                </a>
+              </li>
+              <li>
+                <a>
+                  <Link to="/servicios">Servicios</Link>
+                </a>
+              </li>
+              <li>
+                <a>
+                  <Link to="/contactos">Contacto</Link>
+                </a>
+              </li>
+              <li>
+                <a>
+                  <Link to="/equipo">Equipo</Link>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </div>
   );
 };
