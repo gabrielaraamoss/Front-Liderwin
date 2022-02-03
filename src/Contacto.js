@@ -1,5 +1,6 @@
 import "./assets/css/contacto.css";
 import "./assets/css/styles.css";
+import { useState } from "react";
 
 import Header from "./Header";
 import Navbar from "./Navbar";
@@ -19,6 +20,9 @@ import {
 } from "react-icons/fa";
 
 const Contacto = () => {
+  const [mailMensaje, setMailMensaje] = useState(" ");
+  const [mailAsunto, setMailAsunto] = useState(" ");
+
   return (
     <div>
       <Header />
@@ -87,15 +91,24 @@ const Contacto = () => {
                     type="text"
                     name="subject"
                     placeholder="Asunto"
+                    onChange={(e) => {
+                      setMailAsunto(e.target.value);
+                    }}
                   />
                   <textarea
                     className="input"
                     placeholder="Tu mensaje"
                     required
+                    onChange={(e) => {
+                      setMailMensaje(e.target.value);
+                    }}
                   ></textarea>
-                  <button className="primary-btn message-submit" type="submit">
+                  <a
+                    className="primary-btn message-submit text-decoration-none"
+                    href={`mailto:gabrielaramosbaq@gmail.com?subject=${mailAsunto}&body=${mailMensaje}`}
+                  >
                     <FaPaperPlane className="icon-send" /> Enviar mensaje
-                  </button>
+                  </a>
                   <button className="secondary-btn clear-fields" type="reset">
                     <FaTrashAlt className="icon-trash" /> Limpiar
                   </button>

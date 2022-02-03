@@ -1,9 +1,15 @@
 body.fondo {
   background-color: rgba(153, 171, 199, 1);
+  min-height: 100vh;
 }
 
 h1 {
   color: white;
+}
+
+.cover-logo {
+  margin: auto;
+  width: 50%;
 }
 
 p.lead,

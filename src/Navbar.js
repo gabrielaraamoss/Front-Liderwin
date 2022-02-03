@@ -9,7 +9,7 @@ const Navbar = () => {
       <div className="container">
         <div id="responsive-nav">
           <ul className="main-nav nav navbar-nav">
-            <li className="active">
+            <li>
               <Link to="/inicio">Inicio</Link>
             </li>
             <li>
@@ -19,7 +19,7 @@ const Navbar = () => {
               <Link to="/servicios">Servicios</Link>
             </li>
             <li>
-              <Link to="/contactos">Contacto</Link>
+              <Link to="/contacto">Contacto</Link>
             </li>
             <li>
               <Link to="/equipo">Equipo</Link>

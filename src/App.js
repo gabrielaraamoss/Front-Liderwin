@@ -7,31 +7,56 @@ import Inicio from "./Inicio";
 import Login from "./Login";
 import Cover from "./Cover";
 import Dashboard from "./Dashboard";
-
+import Reporte from "./Reporte";
+import Perfil from "./Perfil";
+import Registro from "./Registro";
+import ReportePdf from "./views/reportePdf/ReportePdf";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import React, { useState } from "react";
+import { BrowserRouter as Router, Route, Switch,Redirect, } from "react-router-dom";
 
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+function PrivateRoute({ component: Component, token, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        token ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{ pathname: "/login", state: { from: props.location } }}
+          />
+        )
+      }
+    />
+  );
+}
 
 export default function App() {
+  const getToken = () => {
+    const tokenString = sessionStorage.getItem("liderwin-token");
+    const userToken = JSON.parse(tokenString);
+    return userToken?.token;
+  };
+  const [token, setToken] = useState(getToken());
+
+  const userLogin = (tok) => {
+    sessionStorage.setItem("liderwin-token", JSON.stringify(tok));
+    setToken(tok.token);
+  };
+
+
+
   return (
     <Router>
-      <div className="App">
-        <head>
-          <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-            crossorigin="anonymous"
-          />
-        </head>
         <Switch>
           <Route exact path="/">
             <Cover />
           </Route>
           <Route path="/">
             <Switch>
-              <Route path="/contactos">
+              <Route path="/contacto">
                 <Contacto />
               </Route>
               <Route path="/catalogo">
@@ -47,15 +72,41 @@ export default function App() {
                 <Inicio />
               </Route>
               <Route path="/login">
-                <Login />
+                <Login 
+                  userLogin = {userLogin}
+                />
               </Route>
-              <Route path="/dashboard">
-                <Dashboard />
+
+              <PrivateRoute 
+                path="/dashboard"
+                token={token}
+                component={() => (<Dashboard />)}
+              />
+              
+
+              <PrivateRoute 
+              path="/reporte/inicio"
+              token={token}
+              component={() => (<Reporte />)}
+              />
+                
+
+
+              <PrivateRoute 
+              path="/reporte/file/:id"
+              token={token}
+              component={() => (<ReportePdf />)}/>
+                
+
+              <Route path="/registro">
+                <Registro />
+              </Route>
+              <Route path="/perfil">
+                <Perfil />
               </Route>
             </Switch>
           </Route>
         </Switch>
-      </div>
     </Router>
   );
 }

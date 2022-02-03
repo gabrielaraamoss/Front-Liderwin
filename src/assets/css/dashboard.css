@@ -98,3 +98,32 @@ body {
   border-color: transparent;
   box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
 }
+
+#chart {
+  background-color: #f5f2eb;
+  border: 1px solid #ccc;
+}
+
+.bar {
+  shape-rendering: crispEdges;
+}
+
+.bar-label {
+  fill: #000;
+  text-anchor: middle;
+  font-size: 18px;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.gridline path,
+.gridline line {
+  fill: none;
+  stroke: #ccc;
+  shape-rendering: crispEdges;
+}

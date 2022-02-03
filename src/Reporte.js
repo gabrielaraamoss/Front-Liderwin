@@ -1,23 +1,27 @@
 import "./assets/css/dashboard.css";
-import Chart1 from "./Dashboard2";
-import Chart2 from "./Dashboard3";
-import LineChart from "./Dashboard1";
-import Linechart1 from "./Dashboard4";
-// import Dashboard2 from "./Dashboard2";
-// import Dashboard3 from "./Dashboard3";
-import { NavLink, } from "react-router-dom";
-import { Link ,useHistory} from "react-router-dom";
+import "./assets/css/styles.css";
+import { Link } from "react-router-dom";
+import React, { useState } from "react";
 
-const Dashboard = () => {
-  const history = useHistory();
-  const Logout = () => {
-    sessionStorage.clear();
-    history.push('/login')
-}
+
+
+const Reporte = () => {
+  const [marca, setMarca] = useState([]);
+  const [fecha, setFecha] = useState();
+  const [ciudades, setCiudades] = useState(["Guayaquil", "Quito", "Cuenta"]);
+  const [ciudadSeleccionada,setCiudadSeleccionada] = useState("");
+  const [detalles, setDetalles] = useState();
+  const [id, setId] = useState("1");
+
+
+  const renderCiudades = ciudades.map((ciudad) => {
+    return <option key={ciudad} value={ciudad}>{ciudad}</option>;
+  });
+
   return (
-    <body>
+    <div>
       <header className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-        <a className="navbar-brand col-md-3 col-lg-2 me-0 px-3">LIDERWIN</a>
+        <a className="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/#">LIDERWIN</a>
         <button
           className="navbar-toggler position-absolute d-md-none collapsed"
           type="button"
@@ -37,9 +41,7 @@ const Dashboard = () => {
         />
         <div className="navbar-nav">
           <div className="nav-item text-nowrap">
-            <div className="nav-link px-3" onClick={() => { Logout() }}>
-            Sign out
-            </div>
+            <a className="nav-link px-3" href="/#">Sign out</a>
           </div>
         </div>
       </header>
@@ -52,14 +54,14 @@ const Dashboard = () => {
           >
             <div className="position-sticky pt-3">
               <ul className="nav flex-column">
-                <li className="nav-item">
-                  <a className="nav-link active" aria-current="page" href="#">
-                    <span data-feather="home"></span>
-                    Dashboard
-                  </a>
-                </li>
                 <li className="nav-link">
-                  <Link to="/reporte/inicio">Reporte</Link>
+                  <Link to="/dashboard">Dashboard</Link>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link active" aria-current="page" href="/#">
+                    <span data-feather="home"></span>
+                    Reporte
+                  </a>
                 </li>
               </ul>
 
@@ -67,7 +69,7 @@ const Dashboard = () => {
                 <span>Saved reports</span>
                 <a
                   className="link-secondary"
-                  href="#"
+                  href="/#"
                   aria-label="Add a new report"
                 >
                   <span data-feather="plus-circle"></span>
@@ -75,25 +77,25 @@ const Dashboard = () => {
               </h6>
               <ul className="nav flex-column mb-2">
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
+                  <a className="nav-link" href="/#">
                     <span data-feather="file-text"></span>
                     Current month
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
+                  <a className="nav-link" href="/#">
                     <span data-feather="file-text"></span>
                     Last quarter
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
+                  <a className="nav-link" href="/#">
                     <span data-feather="file-text"></span>
                     Social engagement
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
+                  <a className="nav-link" href="/#">
                     <span data-feather="file-text"></span>
                     Year-end sale
                   </a>
@@ -104,7 +106,7 @@ const Dashboard = () => {
 
           <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-              <h2>Dashboard</h2>
+              <h2>Reporte de productos</h2>
               <div className="btn-toolbar mb-2 mb-md-0">
                 <div className="btn-group me-2">
                   <button
@@ -129,45 +131,47 @@ const Dashboard = () => {
                 </button>
               </div>
             </div>
-            <div id="d3-container">
-              {/* <p>Gráfico 1</p> */}
-              <p>
-                <Chart1 />
-              </p>
-              <p>
-                <Chart2 />
-              </p>
-              <p>
-                <LineChart elementWidth={600} elementHeight={270} />
-              </p>
-              <p>
-                <Linechart1 />
-              </p>
+            <form className="contact-group">
+              <label>Elija marca</label>
 
-              {/* <p>Gráfico 2</p>
-              <Dashboard2 />
-              <p>Gráfico 3</p>
-              <Dashboard3 /> */}
-            </div>
+              <select className="input" name="products" required defaultValue="">
+                <option value="" disabled >
+                  Productos
+                </option>
+                <option value="Nexxt">Nexxt</option>
+                <option value="Ledvance">Ledvance</option>
+                <option value="Sylvania">Sylvania</option>
+              </select>
+
+              <label>Fecha</label>
+              <input className="input" type="date" name="date" required />
+              <label>Elige Ciudad</label>
+
+              <select className="input" name="city" defaultValue="" required onChange={(e)=>{setCiudadSeleccionada(e.target.value)}}>
+                <option value="" disabled>
+                  Ciudad
+                </option>
+                {renderCiudades}
+              </select>
+
+              <label>Detalles</label>
+              <textarea
+                className="input"
+                placeholder="Detalles sobre el reporte"
+                required
+              ></textarea>
+              <Link className="primary-btn message-submit text-decoration-none" target="_blank" to={`/reporte/file/${id}`}>
+                Generar reporte
+              </Link>
+              <button className="secondary-btn clear-fields" type="reset">
+                Limpiar
+              </button>
+            </form>
           </main>
         </div>
       </div>
-
-      <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-
-      <script
-        src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
-        integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
-        crossorigin="anonymous"
-      ></script>
-      <script
-        src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
-        integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha"
-        crossorigin="anonymous"
-      ></script>
-      <script src="https://d3js.org/d3.v5.min.js"></script>
-    </body>
+    </div>
   );
 };
 
-export default Dashboard;
+export default Reporte;

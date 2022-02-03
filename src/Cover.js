@@ -12,7 +12,7 @@ const Cover = () => {
     <body className=" text-center fondo">
       <div className="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
         <header>
-          <div className="header-logo">
+          <div className="cover-logo">
             <img src={logo} alt="" />
           </div>
           <div className="texto">

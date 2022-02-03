@@ -12,7 +12,7 @@
 }
 
 .team .member {
-  margin: 7.5rem;
+  margin: 5rem;
   padding: 2.5rem;
   height: 600px;
   background: #e1e1e1;
@@ -33,22 +33,6 @@
   transform: scale(0.9);
   -webkit-transition: 0.5s all;
   transition: 0.5s all;
-}
-
-.juan {
-  background-image: url("./../img/team/Juan.jpg");
-}
-
-.gabriela {
-  background-image: url("./../img/team/Gabriela.jpg");
-}
-
-.joby {
-  background-image: url("./../img/team/Joby.jpg");
-}
-
-.wesley {
-  background-image: url("./../img/team/Wesley.jpg");
 }
 
 .team .member .member-img:hover {
@@ -101,9 +85,7 @@
 .social-networks {
   font-size: 2.5rem;
   position: absolute;
-  right: 0;
-  bottom: 0;
-  margin: 1rem;
+  margin: 1rem 2rem 1rem;
 }
 
 .social-networks a {

@@ -6,7 +6,7 @@
   padding: 60px 0px;
   margin: 30px 0px;
   background-color: #99abc7;
-  background-image: url("../img/ofertas.png");
+  background-image: white /*url("../img/ofertas.png")*/;
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -68,7 +68,9 @@
 }
 
 .products-slick {
-  width: 263px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  width: 100%;
 }
 
 .shop {
